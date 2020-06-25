@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="../static/style.css">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <title> Bldg 6A </title>
+    </head>
+    <body>
+        <div class="sidenav" id="sidenav">
+            <a href="#home">Home</a>
+            <a href="#Maintenance">Maint.</a>
+            <a href="#Stores">Stores</a>
+            <a href="#Bldg 1">Bldg 1</a>
+            <a href="#Bldg 2">Bldg 2</a>
+            <a href="#Bldg 5">Bldg 5</a>
+            <a href="#Bldg 6A">Bldg 6A</a>
+            <a href="#Bldg 12m">Bldg 12m</a>
+        </div>
+        <div class="sidenav-btn" onclick="closeSidebar()" id="sidenav-btn">
+            <img id="arrow-direction" src="../static/chevron-double-left-.svg">
+        </div>
+
+        <div class="header-cont">
+            <a href="#logout"><img src="../static/greig_logo.png" alt="grieg logo" href="{{url_for('dashboard')}}"></a>
+            <h1><strong>Bldg 6A</strong></h1>
+        </div>
+
+        <div class="dashboard-cont">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="input-pane-tab" data-toggle="tab" href="#input-pane" role="tab" aria-controls="input-pane" aria-selected="true">Feeder Calibrations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">item2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">item3</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="input-pane" role="tabpanel" aria-labelledby="input-pane">
+                    <form id="feed-data-form" name="feed-data-form" action="#submit-feed-data" method="POST">
+                        <label for="#date-input" id="date-lbl">DATE:</label>
+                        <input id="date-input" name="date-input" type="date">
+                        <label for="tank-input" id="tank-lbl">TANK:</label>
+                        <select id="tank-input" name="tank-input">
+                            <option>6-01</option>
+                            <option>6-02</option>
+                            <option>6-03</option>
+                            <option>6-04</option>
+                            <option>6-05</option>
+                            <option>6-06</option>
+                            <option>6-07</option>
+                            <option>6-08</option>
+                            <option>6-09</option>
+                            <option>6-10</option>
+                            <option>6-11</option>
+                            <option>6-12</option>
+                            <option>6-13</option>
+                            <option>6-14</option>
+                        </select>
+                        <label for="#feed-size-input" id="feed-size-lbl">FEED SIZE:</label>
+                        <select id="feed-size-input" name="feed-size-input">
+                            <option>0.7mm</option>
+                            <option>1.0mm</option>
+                            <option>1.2mm</option>
+                            <option>1.5mm</option>
+                            <option>2.0mm</option>
+                        </select>
+                        <label for="#feed-amount-input" id="feed-amount-lbl">FEED AMOUNT (kg):</label>
+                        <input id="feed-amount-input" name="feed-amount-input" type="text">
+                        <label id="start-time-lbl" name="start-time-lbl">START TIME:</label>
+                        <input id="start-time-input" name="start-time-input" type="time">
+                        <label for="#offtime1-input" id="offtime1-lbl">OFFTIME1 (s):</label>
+                        <input id="offtime1-input" name="offtime1-input" type="text">
+                        <label for="#ontime1-input" id="ontime1-lbl">ONTIME1 (s)</label>
+                        <input id="ontime1-input" name="ontime1-input" type="text">
+                        <label id="adjust-time-lbl" name="adjust-time-lbl">ADJUST TIME:</label>
+                        <input id="adjust-time-input" name="adjust-time-input" type="time">
+                        <label for="#offtime2-input" id="offtime2-lbl">OFFTIME2 (s):</label>
+                        <input id="offtime2-input" name="offtime2-input" type="text">
+                        <label for="#ontime2-input" id="ontime2-lbl">ONTIME2 (s):</label>
+                        <input id="ontime2-input" name="ontime2-input" type="text">                    
+                        <label id="end-time-lbl" name="end-time-lbl">END TIME:</label>
+                        <input id="end-time-input" name="end-time-input" type="time">
+                        <button id="reset-btn" name="reset-btn" type="reset">RESET</button>
+                        <button id="submit-btn" name="submit-btn" type="submit">SUBMIT</button>
+                    </form>
+                    
+                    <div class="row">
+                        <div class="summary-table-cont col-m-6 col-xs-12">
+                            <table class="table table-striped" id="summary-table">
+                                <tr>
+                                    <th>TANK</th>
+                                    <th>1.2mm</th>
+                                    <th>1.5mm</th>
+                                    <th>2.0mm</th>
+                                    <th>2.5mm</th>
+                                </tr>
+                                <tr>
+                                    <td>6-01</td>
+                                    <td>345</td>
+                                    <td>350</td>
+                                    <td>355</td>
+                                    <td>360</td>
+                                </tr>
+                                <tr>
+                                    <td>6-02</td>
+                                    <td>333</td>
+                                    <td>344</td>
+                                    <td>355</td>
+                                    <td>366</td>
+                                </tr>
+                                <tr>
+                                    <td>6-03</td>
+                                    <td>376</td>
+                                    <td>375</td>
+                                    <td>374</td>
+                                    <td>373</td>
+                                </tr>
+                                <tr>
+                                    <td>6-04</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-05</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-06</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-07</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-08</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-09</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-10</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-11</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-12</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-13</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <td>6-14</td>
+                                    <td>398</td>
+                                    <td>323</td>
+                                    <td>285</td>
+                                    <td>265</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="detail-table-cont col-m-6 col-xs-12">
+                            <p style="color: white;">Tank: 6-01</p>
+                            <table class="table table-striped" id="detail-table">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Feed Size:</th>
+                                    <th>g / 100sec</th>
+                                </tr>
+                                <tr>
+                                    <td>2020-06-01</td>
+                                    <td>1.2mm</td>
+                                    <td>350</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-05-31</td>
+                                    <td>1.2mm</td>
+                                    <td>344</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-05-30</td>
+                                    <td>1.2mm</td>
+                                    <td>375</td>
+                                </tr>
+                                <tr>
+                                    <td>2020-05-29</td>
+                                    <td>1.2mm</td>
+                                    <td>323</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+            </div>
+
+
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>     
+        <script>
+            //this function applies the active-menu class to whichever menu item is currently displaying
+            $(document).ready(function () {
+                var url = $(location).attr('href');
+                var menuItem = $('.sidenav a').filter(function() {
+                    return this.href == url;
+                })
+                menuItem.addClass('active-menu');
+            })
+        </script>
+        <script>
+            function closeSidebar() {
+                // set sidenav width to zero
+                document.getElementById("sidenav").style.width = "0";
+                document.getElementById("sidenav-btn").style.left = "5px";
+
+                // change arrows on sidenav open/close button
+                document.getElementById("arrow-direction").src = "../static/chevron-double-right-.svg";
+
+                // change onclick attribute of the sidenav-btn
+                document.getElementById("sidenav-btn").onClick = "openSidebar";
+                document.getElementById("sidenav-btn").setAttribute("onClick", "javascript: openSidebar();");
+            }
+
+            function openSidebar() {
+                // set sidenav width to zero
+                document.getElementById("sidenav").style.width = "160px";
+                document.getElementById("sidenav-btn").style.left = "150px";
+
+                // change arrows on sidenav open/close button
+                document.getElementById("arrow-direction").src = "../static/chevron-double-left-.svg";
+
+                // change onclick attribute of the sidenav-btn
+                document.getElementById("sidenav-btn").onclick = "closeSidebar";
+                document.getElementById("sidenav-btn").setAttribute("onClick", "javascript: closeSidebar();");
+            }
+        </script>
+    </body>
+
+
+
+
+</html>
